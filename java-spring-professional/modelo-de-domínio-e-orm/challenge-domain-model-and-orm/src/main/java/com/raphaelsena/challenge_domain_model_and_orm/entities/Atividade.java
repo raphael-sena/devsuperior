@@ -20,15 +20,15 @@ public class Atividade {
 
     @ManyToMany
     @JoinTable(name = "tb_participante_atividade",
-            joinColumns = @JoinColumn(name = "participante_id"),
-            inverseJoinColumns = @JoinColumn(name = "atividade_id"))
+            joinColumns = @JoinColumn(name = "atividade_id"),
+            inverseJoinColumns = @JoinColumn(name = "participante_id"))
     private Set<Participante> participantes = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "atividade")
+    @OneToMany(mappedBy = "atividade", cascade = CascadeType.ALL)
     private Set<Bloco> blocos = new HashSet<>();
 
     public Atividade() {
