@@ -2,7 +2,10 @@ package com.raphaelsena.challenge_domain_model_and_orm.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -15,6 +18,12 @@ public class Atividade {
     private String nome;
     private String descricao;
     private Double preco;
+
+    @ManyToMany
+    @JoinTable(name = "tb_participante_atividade",
+            joinColumns = @JoinColumn(name = "participante_id"),
+            inverseJoinColumns = @JoinColumn(name = "atividade_id"))
+    private Set<Participante> participantes = new HashSet<>();
 
     public Atividade() {
     }
@@ -56,6 +65,10 @@ public class Atividade {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
     }
 
     @Override
