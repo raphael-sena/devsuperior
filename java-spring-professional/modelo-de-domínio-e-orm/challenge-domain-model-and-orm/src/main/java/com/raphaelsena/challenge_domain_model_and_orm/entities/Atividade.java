@@ -3,7 +3,6 @@ package com.raphaelsena.challenge_domain_model_and_orm.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -24,6 +23,13 @@ public class Atividade {
             joinColumns = @JoinColumn(name = "participante_id"),
             inverseJoinColumns = @JoinColumn(name = "atividade_id"))
     private Set<Participante> participantes = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+    @OneToMany(mappedBy = "atividade")
+    private Set<Bloco> blocos = new HashSet<>();
 
     public Atividade() {
     }
@@ -69,6 +75,18 @@ public class Atividade {
 
     public Set<Participante> getParticipantes() {
         return participantes;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categorias) {
+        this.categoria = categorias;
+    }
+
+    public Set<Bloco> getBlocos() {
+        return blocos;
     }
 
     @Override
