@@ -3,6 +3,7 @@ package com.raphaelsena.crud_clientes.services;
 import com.raphaelsena.crud_clientes.models.Client;
 import com.raphaelsena.crud_clientes.models.dtos.ClientDTO;
 import com.raphaelsena.crud_clientes.repositories.ClientRepository;
+import com.raphaelsena.crud_clientes.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,7 @@ public class ClientService {
 
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id) {
-        Client client = clientRepository.findById(id).get();
+        Client client = clientRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado."));
         return new ClientDTO(client);
     }
 
