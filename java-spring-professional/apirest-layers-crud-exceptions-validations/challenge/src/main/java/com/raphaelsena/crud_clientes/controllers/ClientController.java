@@ -1,13 +1,16 @@
 package com.raphaelsena.crud_clientes.controllers;
 
+import com.raphaelsena.crud_clientes.exceptions.CustomError;
 import com.raphaelsena.crud_clientes.models.dtos.ClientDTO;
 import com.raphaelsena.crud_clientes.services.ClientService;
+import com.raphaelsena.crud_clientes.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.Instant;
 
 @RestController
 @RequestMapping("/clients")
@@ -17,7 +20,7 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClientDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<?> findById(@PathVariable Long id) {
         ClientDTO clientDTO = clientService.findById(id);
         return ResponseEntity.ok(clientDTO);
     }
