@@ -4,6 +4,7 @@ import com.raphaelsena.crud_clientes.exceptions.CustomError;
 import com.raphaelsena.crud_clientes.models.dtos.ClientDTO;
 import com.raphaelsena.crud_clientes.services.ClientService;
 import com.raphaelsena.crud_clientes.services.exceptions.ObjectNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<ClientDTO> create(@RequestBody ClientDTO clientDTO) {
+    public ResponseEntity<ClientDTO> create(@RequestBody @Valid ClientDTO clientDTO) {
         ClientDTO createdClientDTO = clientService.create(clientDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(clientDTO.getId()).toUri();
@@ -34,7 +35,7 @@ public class ClientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO clientDTO) {
+    public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody @Valid ClientDTO clientDTO) {
         ClientDTO updatedClientDTO = clientService.update(id, clientDTO);
         return ResponseEntity.ok(updatedClientDTO);
     }
