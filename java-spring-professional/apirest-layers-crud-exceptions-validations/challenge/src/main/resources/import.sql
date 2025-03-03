@@ -9,3 +9,5 @@ INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Maria Ga
 INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Jhonny Miller', '08678591056', 10000.0, '1990-10-26', 0);
 INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Wilma de Sena', '59538318030', 10500.0, '1946-02-22', 5);
 INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Regina de Oliveira', '59217854077', 10250.0, '1946-08-04', 5);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Luis Fernando', '58496089070', 10000.0, '1998-08-10', 2);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Poliana Moreira', '88673837014', 20000.0, '2000-01-12', 2);

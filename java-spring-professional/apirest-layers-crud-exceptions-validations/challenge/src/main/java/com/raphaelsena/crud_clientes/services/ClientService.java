@@ -13,6 +13,14 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    public ClientDTO findById(Long id) {
+        Client client = clientRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Client not found!")
+        );
+
+        return new ClientDTO(client);
+    }
+
     @Transactional
     public ClientDTO create(ClientDTO obj) {
         Client client = new Client();
@@ -26,4 +34,6 @@ public class ClientService {
 
         return new ClientDTO(client);
     }
+
+
 }
